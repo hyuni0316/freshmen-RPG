@@ -1062,7 +1062,8 @@ MonoBehaviour:
     \uBCC4\uB85C\uBD80\uD130 \uB9CC\uB4E4\uC5B4\uC838"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
-  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
+  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1288,7 +1289,8 @@ MonoBehaviour:
   m_text: Prologue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
-  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
+  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1497,7 +1499,8 @@ MonoBehaviour:
   m_text: "\uD654\uC5EC\uB2C8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
-  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
+  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1582,7 +1585,6 @@ GameObject:
   - component: {fileID: 1456310084}
   - component: {fileID: 1456310087}
   - component: {fileID: 1456310086}
-  - component: {fileID: 1456310085}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -1610,21 +1612,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -851}
   m_SizeDelta: {x: 1080, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1456310085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456310083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109c41f08973846429af681aea0a30c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  r: {x: 50, y: 50, z: 0, w: 0}
-  rect2props: {x: 0.000091552734, y: -24.999939, z: 540.9367, w: 540.9367}
-  image: {fileID: 1456310086}
 --- !u!114 &1456310086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,7 +1796,8 @@ MonoBehaviour:
     \uBCC4\uB85C\uBD80\uD130 \uB9CC\uB4E4\uC5B4\uC838"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
-  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef, type: 2}
+  m_sharedMaterial: {fileID: 6835776825267243787, guid: daa373ac1ae9c0b4ba4c8cf7798c24ef,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
