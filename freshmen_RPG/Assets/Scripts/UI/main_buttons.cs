@@ -27,6 +27,6 @@ public class main_buttons : MonoBehaviour
     
     public void Onclick_Battle()
     {
-        SceneManager.LoadScene("Scenes/ARCameraScene");
+        SceneManager.LoadScene("Scenes/ARScene");
     }
 }
