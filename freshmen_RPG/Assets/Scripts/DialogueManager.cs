@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -89,6 +90,10 @@ public class DialogueManager : MonoBehaviour
             if (curr < guides.Length)
             {
                 StartCoroutine(TypeDialogue(guides[curr], guideText));
+            }
+            else
+            {
+                SceneManager.LoadScene("Scenes/MainScene");
             }
         }
     }
