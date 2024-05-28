@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class main_buttons : MonoBehaviour
 {
@@ -26,6 +27,6 @@ public class main_buttons : MonoBehaviour
     
     public void Onclick_Battle()
     {
-        
+        SceneManager.LoadScene("Scenes/ARCameraScene");
     }
 }
