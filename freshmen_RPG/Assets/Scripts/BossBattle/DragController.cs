@@ -18,16 +18,19 @@ public class DragController : MonoBehaviour
         offset = gameObject.transform.position - GetMouseWorldPos();
     }
 
+    public float moveSpeed = 5.0f; // 개빨라서 카메라 이동 속도 조정함
+
     void OnMouseDrag()
     {
         if (isDragging)
         {
-            Debug.Log("OnMouseDrag");
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, screenPoint.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
             curPosition.y = transform.position.y; // y축 고정
             curPosition.z = transform.position.z; // z축 고정
-            transform.position = curPosition;
+
+            // 고정된 속도로 이동
+            transform.position = Vector3.MoveTowards(transform.position, curPosition, moveSpeed * Time.deltaTime);
         }
     }
 
