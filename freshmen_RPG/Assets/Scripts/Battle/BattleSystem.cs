@@ -17,6 +17,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private BattleDialogBox dialogBox;
     [SerializeField] private GameObject blocker;
     [SerializeField] private GameObject runawayUI;
+    [SerializeField] private GameObject gameClearUI;
+    [SerializeField] private GameObject gameOverUI;
     
     private BattleState state;
     private bool isMonsterDefeated = false;
@@ -157,7 +159,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator OXQuiz()
     {
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}의 저항이 거세집니다.");
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}의 저항을 잠재우기 위해서는 퀴즈를 맞혀 기선을 제압해야해요.");
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}의 저항을 잠재우기 위해서는 퀴즈를 맞혀 기선을 제압해야합니다.");
 
         quizText.text = _quizArr[OXquizNum];
         quizUI.SetActive(true);
@@ -182,8 +184,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator LastOXQuiz()
     {
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 마지막 저항을 합니다..");
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 쓰러뜨리기 위해 퀴즈를 맞혀 전의를 상실시키세요.\n퀴즈를 맞히지 못할 경우, {enemyUnit._Monster._monsterName}가 다시 체력을 회복하게 됩니다.");
-
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 쓰러뜨리기 위해 퀴즈를 맞혀 전의를 상실시키세요.");
+        yield return dialogBox.TypeDialog($"퀴즈를 맞히지 못할 경우, {enemyUnit._Monster._monsterName}가 다시 체력을 회복하게 됩니다.");
         quizText.text = _quizArr[OXquizNum];
         quizUI.SetActive(true);
         
@@ -227,7 +229,7 @@ public class BattleSystem : MonoBehaviour
         realDamage -= enemyUnit._Monster.HP;
         
         StartCoroutine(DamagedSprite(enemyUnit.gameObject));
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}은 {realDamage}의 데미지를 받았다.");
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}은 {realDamage}의 데미지를 받았습니다.");
     }
 
     // 도트뎀 공격
@@ -341,7 +343,7 @@ public class BattleSystem : MonoBehaviour
         int realDamage = player.HP;
         isGameOver = player.TakeDamage(enemyUnit._Monster.Attack, damage);
         realDamage -= player.HP;
-        yield return dialogBox.TypeDialog($"{player._playerName}는 {realDamage}의 데미지를 받았다.");
+        yield return dialogBox.TypeDialog($"{player._playerName}는 {realDamage}의 데미지를 받았습니다.");
         player.TakeDamageEffect(enemyUnit);
         StartCoroutine(DamagedSprite(player.gameObject));
         yield return player.UpdateHP();
@@ -360,10 +362,9 @@ public class BattleSystem : MonoBehaviour
     
     IEnumerator GameClear()
     {
-        // TODO
         Debug.Log("GameClear");
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}을 무찔렀습니다!");
-        // 페이드 아웃되면서 다음 화면으로
+        gameClearUI.SetActive(true);
     }
 
     public void CheckGameOver()
@@ -377,8 +378,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator GameOver()
     {
         Debug.Log("Gameover");
-        yield return dialogBox.TypeDialog("쓰러지고 말았습니다...");
-        // 페이드 아웃되면서 메인화면으로
+        yield return dialogBox.TypeDialog("새로니는 적의 공격에 쓰러지고 말았습니다...");
+        gameOverUI.SetActive(true);
     }
     
     IEnumerator DamagedSprite(GameObject go)
