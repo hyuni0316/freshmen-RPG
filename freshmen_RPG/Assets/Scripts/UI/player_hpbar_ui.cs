@@ -51,4 +51,10 @@ public class player_hpbar_ui : MonoBehaviour
             currHP = maxHP;
         UpdateHPBar();
     }
+
+    public void FullPlayerHP()
+    {
+        currHP = maxHP;
+        UpdateHPBar();
+    }
 }
