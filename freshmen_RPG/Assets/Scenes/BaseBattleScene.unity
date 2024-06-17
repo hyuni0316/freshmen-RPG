@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 518934890}
-  maxHp: 100
+  maxHp: 300
   attack: 20
   defense: 10
 --- !u!1 &27543920
@@ -3303,7 +3303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAD50\uC218\uB2D8 \uC131\uB300\uBAA8\uC0AC"
+  m_text: "\uC9C0\uD53C\uD2F0\uC758 \uAC00\uD638"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6195f6ff24b0716408121100934493e9, type: 2}
   m_sharedMaterial: {fileID: -982077399918327952, guid: 6195f6ff24b0716408121100934493e9,
@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACFC\uC81C \uD22C\uCC99"
+  m_text: "\uAD50\uC218\uB2D8 \uC131\uB300\uBAA8\uC0AC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6195f6ff24b0716408121100934493e9, type: 2}
   m_sharedMaterial: {fileID: -982077399918327952, guid: 6195f6ff24b0716408121100934493e9,
@@ -5100,7 +5100,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: forth skill
+          m_StringArgument: fourth skill
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1981229514
@@ -5331,7 +5331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACFC\uC81C \uD22C\uCC99"
+  m_text: "\uACFC\uC7A0 \uAC11\uC637"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6195f6ff24b0716408121100934493e9, type: 2}
   m_sharedMaterial: {fileID: -982077399918327952, guid: 6195f6ff24b0716408121100934493e9,

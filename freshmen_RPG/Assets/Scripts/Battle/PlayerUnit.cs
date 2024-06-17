@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerUnit : MonoBehaviour
 {
     public string _playerName { get; set; }
-    public int HP { get; set; } = 100; 
+    public int HP { get; set; }
     [SerializeField] private HPBar _hpBar;
     
     [SerializeField] private int maxHp;
@@ -13,8 +15,23 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] private int defense;
     
     public int MaxHP { get { return maxHp; } }
-    public int Attack { get { return attack; } }
-    public int Defense { get { return defense; } }
+    public int Attack { 
+        get { return attack; }
+        set { attack = value; }
+    }
+
+    public int Defense
+    {
+        get { return defense; }
+        set { defense = value; }
+    }
+
+    private void Start()
+    {
+        HP = MaxHP;
+        _playerName = "새로니";
+    }
+
     public void Setup()
     {
         _hpBar.SetHP((float) HP/maxHp);

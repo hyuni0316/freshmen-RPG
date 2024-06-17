@@ -19,6 +19,8 @@ public class MonsterBase : ScriptableObject
     public int Attack { get { return attack; }
         set { attack = value; }
     }
-    public int Defense { get { return defense; } }
+    public int Defense { get { return defense; }
+        set { defense = value; }
+    }
 
 }
