@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 507758d5bae872a4598ce432ea5cc2a2
   - enabled: 1
-    path: Assets/Scenes/ARBattleCameraScene.unity
+    path: Assets/Scenes/ARCameraScene.unity
     guid: df59b9ca428b340cc896fa01ec1aadff
   - enabled: 1
     path: Assets/Scenes/Prologue.unity

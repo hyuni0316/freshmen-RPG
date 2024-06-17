@@ -6,50 +6,47 @@ using UnityEngine.SceneManagement;
 public class ARCameraController : MonoBehaviour
 {
     [SerializeField] private CurrentSituation _currentSituation;
+    [SerializeField] private BattleDialogBox _dialogBox;
 
     public void LoadSceneHakmoonInfo()
     {
-        SceneManager.LoadScene("");
+        StartCoroutine(SceneLoader("", true, "학생문화관"));
     }
 
     public void LoadSceneHakmoonBattle()
     {
-        if (_currentSituation.HakmoonInfo)
-        {
-            SceneManager.LoadScene("HakmoonBattleScene");
-        }
+        StartCoroutine(SceneLoader("HakmoonBattleScene", _currentSituation.HakmoonInfo, "학생문화관"));
     }
     
     public void LoadScenePoscoInfo()
-    {
-        if (_currentSituation.HakmoonBattle)
-        {
-            SceneManager.LoadScene("");
-        }
+    { 
+        StartCoroutine(SceneLoader("", _currentSituation.HakmoonBattle, "포스코관"));
     }
     
     public void LoadScenePoscoBattle()
     {
-        if (_currentSituation.PoscoInfo)
-        {
-            SceneManager.LoadScene("PoscoBattleScene");
-        }
+        StartCoroutine(SceneLoader("PoscoBattleScene", _currentSituation.PoscoInfo, "포스코관"));
     }
     
     public void LoadSceneAsanInfo()
     {
-        if (_currentSituation.PoscoBattle)
-        {
-            SceneManager.LoadScene("");
-        }
+        StartCoroutine(SceneLoader("", _currentSituation.PoscoBattle, "공학관"));
     }
     
     public void LoadSceneAsanBattle()
     {
-        if (_currentSituation.AsanInfo)
+        StartCoroutine(SceneLoader("AsanBattleScene", _currentSituation.AsanInfo, "공학관"));
+    }
+
+    IEnumerator SceneLoader(string sceneName, bool isLoadable, string sceneNameForPrint)
+    {
+        if (!isLoadable)
         {
-            SceneManager.LoadScene("AsanBattleScene");
+            yield return _dialogBox.TypeDialog($"아직 진행할 수 없는 단계입니다.");
+            yield break;
         }
+        yield return _dialogBox.TypeDialog($"{sceneNameForPrint}으로 이동합니다.");
+        SceneManager.LoadScene(sceneName);
     }
     
     
