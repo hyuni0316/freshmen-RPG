@@ -84,10 +84,9 @@ public class ButtonFlyAnimator : MonoBehaviour
         {
             // Canvas의 sortingOrder를 최상위로 설정
             canvas.overrideSorting = true;
-            canvas.sortingOrder = 999; // 원하는 숫자로 설정 (최상위로 올릴 숫자)
+            canvas.sortingOrder = 999; // 최상위로 올릴 숫자
         }
 
-        // 자신의 Sibling Index를 가장 큰 값으로 설정하여 최상위에 그리기
         targetButton.transform.SetAsLastSibling();
 
         // 모달창 표시
@@ -95,7 +94,7 @@ public class ButtonFlyAnimator : MonoBehaviour
         {
             infoModal.SetActive(true);
 
-            // 자식 GameObject들을 검색해서 Image 및 Text 컴포넌트를 찾아서 투명도를 조절
+            // 자식 GameObject들을 검색해서 Image 및 Text 컴포넌트를 찾아서 투명도 조절
             foreach (Transform child in infoModal.transform)
             {
                 Image imageComponent = child.GetComponent<Image>();
@@ -114,7 +113,7 @@ public class ButtonFlyAnimator : MonoBehaviour
 
         // 아이템 이미지 점점 확대
         float elapsedTime = 0f;
-        Vector3 targetScale = originalScale * 10f; // 화면을 가득 채우기 위해 큰 값으로 설정
+        Vector3 targetScale = originalScale * 10f;
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
         while (elapsedTime < animationDuration)

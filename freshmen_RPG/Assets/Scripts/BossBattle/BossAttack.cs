@@ -9,8 +9,10 @@ public class BossAttack : MonoBehaviour
     public Transform player;
     public float attackInterval = 5f;
     public float directionChangeInterval = 2f; // 방향 변경 간격
+    public GameObject modalWindow; // 모달 창
 
     private Coroutine attackRoutine;
+    private bool canFire = true;
 
     void Start()
     {
@@ -31,7 +33,10 @@ public class BossAttack : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackInterval);
-            FireProjectiles();
+            if (canFire)
+            {
+                FireProjectiles();
+            }
         }
     }
 
@@ -63,4 +68,26 @@ public class BossAttack : MonoBehaviour
         }
     }
 
+    public void StopFiringFor3Seconds()
+    {
+        if (canFire)
+        {
+            StartCoroutine(StopFiringCoroutine());
+        }
+    }
+
+    IEnumerator StopFiringCoroutine()
+    {
+        canFire = false;
+        if (modalWindow != null)
+        {
+            modalWindow.SetActive(true); // 모달 창 활성화
+        }
+        yield return new WaitForSeconds(3f);
+        canFire = true;
+        if (modalWindow != null)
+        {
+            modalWindow.SetActive(false); // 모달 창 비활성화
+        }
+    }
 }
