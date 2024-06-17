@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 directionToBoss = (boss.position - playerPosition).normalized;
 
         // 발사체 생성 및 방향 설정
-        Vector3 offset = new Vector3(0, 2.0f, -2.0f);
+        Vector3 offset = new Vector3(0, 1.5f, 0);
         GameObject projectile = Instantiate(projectilePrefab, playerPosition + offset, Quaternion.identity);
 
         // 발사체 초기화

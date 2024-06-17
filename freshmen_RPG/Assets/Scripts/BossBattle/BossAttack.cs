@@ -38,7 +38,7 @@ public class BossAttack : MonoBehaviour
     void FireProjectiles()
     {
         // 다섯 개의 방향 계산
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 20; i++)
         {
             Vector3 direction = Random.insideUnitSphere.normalized; // 랜덤한 방향 설정
 
