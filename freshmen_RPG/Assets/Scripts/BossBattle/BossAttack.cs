@@ -36,8 +36,6 @@ public class BossAttack : MonoBehaviour
 
     void FireProjectiles()
     {
-
-        Debug.Log("FireProjectiles called");
         // 다섯 개의 방향 계산
         for (int i = 0; i < 20; i++)
         {

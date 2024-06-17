@@ -12,7 +12,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("스타트 호출");
         attackButton.onClick.AddListener(FireProjectile);
+        Debug.Log("AddListener");
     }
 
     void FireProjectile()
