@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,7 @@ public class PlayerUnit : MonoBehaviour
     public string _playerName { get; set; }
     public int HP { get; set; }
     [SerializeField] private HPBar _hpBar;
+    [SerializeField] private TextMeshProUGUI _hpTxt;
     
     [SerializeField] private int maxHp;
     [SerializeField] private int attack;
@@ -39,6 +41,7 @@ public class PlayerUnit : MonoBehaviour
 
     public IEnumerator UpdateHP()
     {
+        _hpTxt.text = $"{HP}/{MaxHP}";
         yield return _hpBar.SetHPSmooth((float)HP / MaxHP);
     }
 
