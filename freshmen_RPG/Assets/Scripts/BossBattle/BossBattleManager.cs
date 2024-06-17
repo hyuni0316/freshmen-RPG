@@ -7,8 +7,27 @@ public class BossBattleManager : MonoBehaviour
     int itemIdx = 0;
     [SerializeField] GameObject playerInfo;
     [SerializeField] GameObject skillSet;
-    public Camera mainCamera;
-    public Camera playerCamera;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] GameObject bossObject; // Boss 오브젝트 참조
+    private BossAttack bossAttack; // BossAttack 스크립트 참조
+
+    void Awake()
+    {
+        if (bossObject != null)
+        {
+            bossAttack = bossObject.GetComponent<BossAttack>();
+
+            if (bossAttack == null)
+            {
+                Debug.LogError("BossAttack component not found on the boss object!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Boss object not assigned in the Inspector!");
+        }
+    }
 
     void Start()
     {
@@ -34,10 +53,22 @@ public class BossBattleManager : MonoBehaviour
 
     public IEnumerator SwitchToPlayerCamera()
     {
+        Debug.Log("SwitchToPlayerCamera called");
         mainCamera.enabled = false;
         playerCamera.enabled = true;
 
         yield return new WaitForSeconds(0.1f);
+
+        // 카메라 전환 후 보스 공격 시작
+        Debug.Log("Starting boss attack");
+        if (bossAttack != null)
+        {
+            bossAttack.StartAttacking();
+        }
+        else
+        {
+            Debug.LogError("BossAttack component not found!");
+        }
     }
 
     public void ActiveNextItem()

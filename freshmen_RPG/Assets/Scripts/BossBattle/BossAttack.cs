@@ -9,9 +9,20 @@ public class BossAttack : MonoBehaviour
     public Transform player;
     public float attackInterval = 5f;
 
+    private Coroutine attackRoutine;
+
     void Start()
     {
-        StartCoroutine(AttackRoutine());
+        // StartCoroutine(AttackRoutine());
+    }
+
+    public void StartAttacking()
+    {
+        Debug.Log("StartAttacking called");
+        if (attackRoutine == null)
+        {
+            attackRoutine = StartCoroutine(AttackRoutine());
+        }
     }
 
     IEnumerator AttackRoutine()
@@ -25,10 +36,12 @@ public class BossAttack : MonoBehaviour
 
     void FireProjectiles()
     {
+
+        Debug.Log("FireProjectiles called");
         // 다섯 개의 방향 계산
         for (int i = 0; i < 20; i++)
         {
-            float angle = i * 360f / 20f; // 360도를 5개의 부분으로 나누어 방향 계산
+            float angle = i * 360f / 20f; // 360도를 20개의 부분으로 나누어 방향 계산
             Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
 
             // 빨간색 발사체 생성
