@@ -11,6 +11,7 @@ public class PlayerUnit : MonoBehaviour
     public int HP { get; set; }
     [SerializeField] private HPBar _hpBar;
     [SerializeField] private TextMeshProUGUI _hpTxt;
+    [SerializeField] private Animator _damagedAnim;
     
     [SerializeField] private int maxHp;
     [SerializeField] private int attack;
@@ -58,5 +59,27 @@ public class PlayerUnit : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public IEnumerator TakeDamageEffect(EnemyUnit enemyUnit)
+    {
+        _damagedAnim.gameObject.SetActive(true);
+
+        switch (enemyUnit._Monster._monsterName)
+        {
+            case "좀비 화연":
+                _damagedAnim.Play("Zombie_attack");
+                yield return new WaitForSeconds(0.5f);
+                break;
+            case "포스코봇":
+                _damagedAnim.Play("Poscobot_attack");
+                yield return new WaitForSeconds(0.5f);
+                break;
+            case "아산 예티":
+                _damagedAnim.Play("AsanYeti_attack");
+                yield return new WaitForSeconds(0.5f);
+                break;
+            
+        }
     }
 }

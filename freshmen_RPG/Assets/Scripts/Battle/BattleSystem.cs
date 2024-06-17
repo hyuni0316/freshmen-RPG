@@ -83,7 +83,7 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.SetUp();
         enemyHud.SetData(enemyUnit._Monster);
 
-        yield return dialogBox.TypeDialog($"학문관에 {enemyUnit._Monster._monsterName}가 나타났습니다.\n적을 물리쳐 공학관의 평화를 지켜주세요.");
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 나타났습니다.\n적을 물리쳐 학교의 평화를 지켜주세요.");
         yield return new WaitForSeconds(0.5f);
         state = BattleState.PlayerTurn;
     }
@@ -166,7 +166,7 @@ public class BattleSystem : MonoBehaviour
 
         if (quizAnswer == _quizAnswerArr[OXquizNum])
         {
-            yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 진정시켰습니다. 공격력이 올라가지 않습니다.");
+            yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 진정시켰습니다.\n공격력이 올라가지 않습니다.");
         }
         else
         {
@@ -182,8 +182,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator LastOXQuiz()
     {
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 마지막 저항을 합니다..");
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 쓰러뜨리기 위해 퀴즈를 맞혀 전의를 상실시키세요.");
-        yield return dialogBox.TypeDialog($"퀴즈를 맞히지 못할 경우, {enemyUnit._Monster._monsterName}가 다시 체력을 회복하게 됩니다.");
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 쓰러뜨리기 위해 퀴즈를 맞혀 전의를 상실시키세요.\n퀴즈를 맞히지 못할 경우, {enemyUnit._Monster._monsterName}가 다시 체력을 회복하게 됩니다.");
 
         quizText.text = _quizArr[OXquizNum];
         quizUI.SetActive(true);
@@ -198,7 +197,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             yield return dialogBox.TypeDialog(
-                $"{enemyUnit._Monster._monsterName}를 진정시키지 못했습니다. {enemyUnit._Monster._monsterName}가 체력을 회복합니다.");
+                $"{enemyUnit._Monster._monsterName}를 진정시키지 못했습니다.\n{enemyUnit._Monster._monsterName}가 체력을 회복합니다.");
 
             enemyUnit._Monster.TakeDamage(10, -50);
             yield return enemyHud.UpdateHP();
@@ -286,7 +285,53 @@ public class BattleSystem : MonoBehaviour
     {
         Debug.Log("Enemy Turn");
         state = BattleState.EnemyTurn;
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName} 가 공격합니다.");
+        
+        int random = Random.Range(0, 3);
+        switch (random)
+        {
+            // 일반 공격
+            case 0:
+                yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}이 공격합니다!");
+                yield return EnemyAttack(20);
+                break;
+            // 연속 공격
+            case 1:
+                yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}이 연속으로 공격합니다!");
+                random = Random.Range(2, 6);
+                for (int i = 0; i < random; i++)
+                {
+                    yield return EnemyAttack(7);
+                }
+                yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}이 {random}번 공격했습니다.");
+                break;
+            // 몬스터 유틸 스킬
+            case 2:
+                yield return EnemyUtilSkill();
+                break;
+        }
+    }
+
+    IEnumerator EnemyUtilSkill()
+    {
+        int deltaAbil = 3;
+        int random = Random.Range(0, 2);
+        switch (random)
+        {
+            // 공격력 증가
+            case 0:
+                yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 기합을 내지릅니다!\n{enemyUnit._Monster._monsterName}의 공격력이 증가합니다.");
+                enemyUnit._Monster.Attack += deltaAbil;
+                break;
+            case 1:
+                yield return dialogBox.TypeDialog(
+                    $"{enemyUnit._Monster._monsterName}가 몸을 웅크립니다!\n{enemyUnit._Monster._monsterName}의 방어력이 증가합니다.");
+                enemyUnit._Monster.Defense += deltaAbil;
+                break;
+        }
+    }
+
+    IEnumerator EnemyAttack(int damage)
+    {
         if (isArmorActive)
         {
             yield return dialogBox.TypeDialog($"하지만 {player._playerName}의 갑옷에 막혀 데미지가 들어가지 않았습니다.");
@@ -294,9 +339,10 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
         int realDamage = player.HP;
-        isGameOver = player.TakeDamage(enemyUnit._Monster.Attack, 20);
+        isGameOver = player.TakeDamage(enemyUnit._Monster.Attack, damage);
         realDamage -= player.HP;
         yield return dialogBox.TypeDialog($"{player._playerName}는 {realDamage}의 데미지를 받았다.");
+        player.TakeDamageEffect(enemyUnit);
         StartCoroutine(DamagedSprite(player.gameObject));
         yield return player.UpdateHP();
     }
@@ -340,7 +386,7 @@ public class BattleSystem : MonoBehaviour
         Image targetImage = go.GetComponent<Image>();
         for (int i = 0; i < 6; i++)
         {
-            targetImage.color = new Color32(234, 140, 140, 255);
+            targetImage.color = new Color32(238, 169, 169, 255);
             yield return new WaitForSeconds(0.1f);
             targetImage.color = Color.white;
             yield return new WaitForSeconds(0.1f);

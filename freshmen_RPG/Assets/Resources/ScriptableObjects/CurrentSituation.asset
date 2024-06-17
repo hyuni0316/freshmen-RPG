@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485b15785751a9e4d8b93d7a45a7951e, type: 3}
-  m_Name: Asan_Yeti
+  m_Script: {fileID: 11500000, guid: dcfb2a9a38daa1c48b14246994291488, type: 3}
+  m_Name: CurrentSituation
   m_EditorClassIdentifier: 
-  name: "\uC544\uC0B0 \uC608\uD2F0"
-  _monsterSprite: {fileID: 21300000, guid: e07ddfe849abc48a993e50172bab7309, type: 3}
-  maxHP: 400
-  attack: 40
-  defense: 20
+  HakmoonInfo: 0
+  HakmoonBattle: 0
+  PoscoInfo: 0
+  PoscoBattle: 0
+  AsanInfo: 0
+  AsanBattle: 0

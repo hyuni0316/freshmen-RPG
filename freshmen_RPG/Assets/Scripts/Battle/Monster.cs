@@ -38,11 +38,25 @@ public class Monster
     }
     public int Attack {
         get { return attack; }
-        set { attack = value; }
+        set
+        {
+            if (value <= 5)
+            {
+                attack = 5;
+                return;
+            } 
+            attack = value; }
     }
     public int Defense { 
         get { return defense; }
-        set { defense = value; }
+        set {
+            if (value <= 5)
+            {
+                defense = 5;
+                return;
+            } 
+            defense = value;
+        }
     }
     public Sprite MonsterSprite { get { return _monsterBase.MonsterSprite; } }
 
