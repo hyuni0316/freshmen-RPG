@@ -8,6 +8,7 @@ public class BossAttack : MonoBehaviour
     public GameObject blueProjectilePrefab;
     public Transform player;
     public float attackInterval = 5f;
+    public float directionChangeInterval = 2f; // 방향 변경 간격
 
     private Coroutine attackRoutine;
 
@@ -37,14 +38,16 @@ public class BossAttack : MonoBehaviour
     void FireProjectiles()
     {
         // 다섯 개의 방향 계산
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 40; i++)
         {
-            float angle = i * 360f / 20f; // 360도를 20개의 부분으로 나누어 방향 계산
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            Vector3 direction = Random.insideUnitSphere.normalized; // 랜덤한 방향 설정
 
             // 빨간색 발사체 생성
             GameObject projectilePrefab = redProjectilePrefab;
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+            // 발사체를 앞으로 조금 이동하여 plane 위로 발사되도록 위치 조정
+            Vector3 spawnPosition = transform.position + Vector3.forward * -2f + Vector3.up * 1.5f;
+            GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
             projectile.GetComponent<BossProjectile>().Initialize(direction, gameObject);
         }
 
@@ -52,8 +55,12 @@ public class BossAttack : MonoBehaviour
         if (Random.value > 0.7f)
         {
             Vector3 direction = (player.position - transform.position).normalized;
-            GameObject projectile = Instantiate(blueProjectilePrefab, transform.position, Quaternion.identity);
+
+            // 발사체를 앞으로 조금 이동하여 plane 위로 발사되도록 위치 조정
+            Vector3 spawnPosition = transform.position + Vector3.forward * -2f + Vector3.up * 1.5f;
+            GameObject projectile = Instantiate(blueProjectilePrefab, spawnPosition, Quaternion.identity);
             projectile.GetComponent<BossProjectile>().Initialize(direction, gameObject);
         }
     }
+
 }

@@ -12,20 +12,26 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("스타트 호출");
         attackButton.onClick.AddListener(FireProjectile);
-        Debug.Log("AddListener");
     }
 
     void FireProjectile()
     {
         Debug.Log("플레이어 공격 called");
+
+        // 플레이어의 현재 위치
+        Vector3 playerPosition = transform.position;
+
         // 플레이어에서 보스를 향하는 방향 벡터 계산
-        Vector3 directionToBoss = (boss.position - transform.position).normalized;
+        Vector3 directionToBoss = (boss.position - playerPosition).normalized;
 
         // 발사체 생성 및 방향 설정
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Vector3 offset = new Vector3(0, 2.0f, -2.0f);
+        GameObject projectile = Instantiate(projectilePrefab, playerPosition + offset, Quaternion.identity);
+
+        // 발사체 초기화
         projectile.GetComponent<PlayerProjectile>().Initialize(directionToBoss, gameObject);
         Debug.Log("공격함");
     }
+
 }
