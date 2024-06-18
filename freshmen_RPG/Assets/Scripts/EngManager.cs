@@ -84,7 +84,7 @@ public class EngManager : MonoBehaviour
         {
             curr++;
 
-            if (curr == 2)
+            if (curr == 4)
             {
                 stickerImg.SetActive(false);
                 mapImg.SetActive(true);
