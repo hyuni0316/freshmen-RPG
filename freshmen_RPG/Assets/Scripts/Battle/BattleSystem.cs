@@ -20,6 +20,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject runawayUI;
     [SerializeField] private GameObject gameClearUI;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private BattleDialogBox _battleInfo;
+    
     
     private BattleState state;
     private bool isMonsterDefeated = false;
@@ -86,7 +88,22 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.SetUp();
         enemyHud.SetData(enemyUnit._Monster);
 
-        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 나타났습니다.\n적을 물리쳐 학교의 평화를 지켜주세요.");
+        if (_battleInfo)
+        {
+            _battleInfo.gameObject.SetActive(true);
+            yield return _battleInfo.TypeDialog($"신성한 학교에 과제에 지쳐 좀비가 된 학생이 나타났어요! 스킬을 사용해 좀비가 된 학생을 쓰러트려 진정시키세요.");
+            yield return new WaitForSeconds(0.5f);
+            yield return _battleInfo.TypeDialog($"과제 투척 스킬은 적에게 데미지를 주는 일반 공격입니다. 교수님 성대모사 스킬은 적에게 4턴 동안 적은 데미지를 주는 공격입니다.");
+            yield return new WaitForSeconds(0.5f);
+            yield return _battleInfo.TypeDialog($"과잠 감옷 스킬은 적의 다음 공격을 단 한 번 막아줍니다. 지피티의 가호 스킬은 적의 공격과 방어를 깎거나 당신의 공격과 방어를 상승시켜줍니다.");
+            yield return new WaitForSeconds(0.5f);
+            yield return _battleInfo.TypeDialog($"적의 HP를 3분의 1씩 깎을 때마다 퀴즈를 맞혀 적을 진정시켜야해요. 퀴즈를 못 맞출 경우에는 적의 공격력이 강해지거나 체력을 회복할 수도 있어요!");
+            yield return new WaitForSeconds(0.5f);
+            yield return _battleInfo.TypeDialog($"자 그럼, 건투를 빌어요!");
+            _battleInfo.gameObject.SetActive(false);
+        }
+
+        yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName} 출몰!! \n적을 물리쳐 학교의 평화를 지켜주세요.");
         yield return new WaitForSeconds(0.5f);
         state = BattleState.PlayerTurn;
     }
