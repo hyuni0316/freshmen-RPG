@@ -5,8 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void LoadBattleScene()
+    public void LoadHakmoonBattleScene()
     {
-        SceneManager.LoadScene("Scenes/BattleScene");
+        SceneManager.LoadScene("Scenes/HakmoonBattleScene");
+    }
+    public void LoadPoscoBattleScene()
+    {
+        SceneManager.LoadScene("Scenes/PoscoBattleScene");
+    }
+    public void LoadAsanBattleScene()
+    {
+        SceneManager.LoadScene("Scenes/AsanBattleScene");
     }
 }
