@@ -21,7 +21,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject gameClearUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private BattleDialogBox _battleInfo;
-    
+    [SerializeField] private SoundPlayer _effectPlayer;
+    [SerializeField] private SoundPlayer _bgmPlayer;
     
     private BattleState state;
     private bool isMonsterDefeated = false;
@@ -87,6 +88,7 @@ public class BattleSystem : MonoBehaviour
         player.Setup();
         enemyUnit.SetUp();
         enemyHud.SetData(enemyUnit._Monster);
+        _bgmPlayer.Battle_BGM();
 
         if (_battleInfo)
         {
@@ -152,8 +154,10 @@ public class BattleSystem : MonoBehaviour
         {
             leftSDamageTurn--;
             yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}가 교수님 성대모사의 여파로 인한 데미지를 받습니다.");
+            _effectPlayer.Attack_Effect();
             int tmpNum = enemyUnit._Monster.TakeDamage(10, 20);
             if (OXquizNum == -1) OXquizNum = tmpNum;
+            StartCoroutine(DamagedSprite(enemyUnit.gameObject));
             yield return enemyHud.UpdateHP();
             yield return dialogBox.TypeDialog(
                 $"{leftSDamageTurn}턴 동안 {enemyUnit._Monster._monsterName}에게 추가 데미지를 줍니다.");
@@ -186,10 +190,12 @@ public class BattleSystem : MonoBehaviour
 
         if (quizAnswer == _quizAnswerArr[OXquizNum])
         {
+            _effectPlayer.GameClear_Effect();
             yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 진정시켰습니다.\n공격력이 올라가지 않습니다.");
         }
         else
         {
+            _effectPlayer.GameOver_Effect();
             yield return dialogBox.TypeDialog(
                 $"{enemyUnit._Monster._monsterName}를 진정시키지 못했습니다. {enemyUnit._Monster._monsterName}의 공격력이 5 올라갑니다.");
             enemyUnit._Monster.Attack += 5;
@@ -212,10 +218,12 @@ public class BattleSystem : MonoBehaviour
         if (quizAnswer == _quizAnswerArr[OXquizNum])
         {
             yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}를 쓰러트렸습니다!");
-            CheckGameOver();
+            _effectPlayer.GameClear_Effect();
+            CheckGameClear();
         }
         else
         {
+            _effectPlayer.GameOver_Effect();
             yield return dialogBox.TypeDialog(
                 $"{enemyUnit._Monster._monsterName}를 진정시키지 못했습니다.\n{enemyUnit._Monster._monsterName}가 체력을 회복합니다.");
 
@@ -241,6 +249,7 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("First Skill");
         int skillDamage = 30;
         yield return dialogBox.TypeDialog($"{player._playerName}의 과제 투척 공격!");
+        _effectPlayer.Attack_Effect();
         yield return new WaitForSeconds(0.5f);
         int realDamage = enemyUnit._Monster.HP;
         OXquizNum = enemyUnit._Monster.TakeDamage(player.Attack, skillDamage);
@@ -361,6 +370,7 @@ public class BattleSystem : MonoBehaviour
         int realDamage = player.HP;
         isGameOver = player.TakeDamage(enemyUnit._Monster.Attack, damage);
         realDamage -= player.HP;
+        _effectPlayer.Attack_Effect();
         yield return dialogBox.TypeDialog($"{player._playerName}는 {realDamage}의 데미지를 받았습니다.");
         player.TakeDamageEffect(enemyUnit);
         StartCoroutine(DamagedSprite(player.gameObject));
@@ -395,10 +405,12 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}을 무찔렀습니다!");
+        _bgmPlayer.StopBGM();
+        _effectPlayer.GameClear_Effect();
         gameClearUI.SetActive(true);
     }
 
-    public void CheckGameOver()
+    public void CheckGameClear()
     {
         if (enemyUnit._Monster.HP <= 0)
         {
@@ -410,11 +422,14 @@ public class BattleSystem : MonoBehaviour
     {
         Debug.Log("Gameover");
         yield return dialogBox.TypeDialog("새로니는 적의 공격에 쓰러지고 말았습니다...");
+        _bgmPlayer.StopBGM();
+        _effectPlayer.GameOver_Effect();
         gameOverUI.SetActive(true);
     }
     
     IEnumerator DamagedSprite(GameObject go)
     {
+        _effectPlayer.Damaged_Effect();
         Image targetImage = go.GetComponent<Image>();
         for (int i = 0; i < 6; i++)
         {
