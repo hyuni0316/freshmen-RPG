@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfb2a9a38daa1c48b14246994291488, type: 3}
+  m_Name: CurrentSituation
+  m_EditorClassIdentifier: 
+  HakmoonInfo: 1
+  HakmoonBattle: 1
+  PoscoInfo: 1
+  PoscoBattle: 0
+  AsanInfo: 0
+  AsanBattle: 0
+  BossBattle: 0
