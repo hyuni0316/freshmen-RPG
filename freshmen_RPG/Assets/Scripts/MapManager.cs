@@ -12,7 +12,7 @@ public class MapManager : MonoBehaviour
     public string strBaseURL = "";
     public string latitude = "";
     public string longitude = "";
-    public int level = 30;
+    public int level = 20;
     public int mapWidth;
     public int mapHeight;
     public string strAPIKey = "";
