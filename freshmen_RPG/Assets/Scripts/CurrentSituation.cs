@@ -11,4 +11,5 @@ public class CurrentSituation : ScriptableObject
     [SerializeField] public bool PoscoBattle;
     [SerializeField] public bool AsanInfo;
     [SerializeField] public bool AsanBattle;
+    [SerializeField] public bool BossBattle;
 }

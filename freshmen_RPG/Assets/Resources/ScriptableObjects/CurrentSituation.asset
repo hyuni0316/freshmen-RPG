@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfb2a9a38daa1c48b14246994291488, type: 3}
   m_Name: CurrentSituation
   m_EditorClassIdentifier: 
-  HakmoonInfo: 0
-  HakmoonBattle: 0
-  PoscoInfo: 0
+  HakmoonInfo: 1
+  HakmoonBattle: 1
+  PoscoInfo: 1
   PoscoBattle: 0
   AsanInfo: 0
   AsanBattle: 0
+  BossBattle: 0

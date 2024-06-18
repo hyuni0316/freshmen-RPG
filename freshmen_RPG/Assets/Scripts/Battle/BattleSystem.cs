@@ -13,6 +13,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private PlayerUnit player;
     [SerializeField] private EnemyHud enemyHud;
     [SerializeField] private EnemyUnit enemyUnit;
+    [SerializeField] private CurrentSituation _currentSituation;
     
     [SerializeField] private BattleDialogBox dialogBox;
     [SerializeField] private GameObject blocker;
@@ -237,7 +238,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SecondSkill()
     {
         yield return dialogBox.TypeDialog($"{player._playerName}의 교수님 성대모사 공격!");
-        leftSDamageTurn = 3;
+        leftSDamageTurn = 4;
         yield return dialogBox.TypeDialog($"{leftSDamageTurn}턴 동안 {enemyUnit._Monster._monsterName}에게 추가 데미지를 줍니다.");
     }
 
@@ -363,6 +364,19 @@ public class BattleSystem : MonoBehaviour
     IEnumerator GameClear()
     {
         Debug.Log("GameClear");
+        string sceneName = SceneManager.GetActiveScene().name;
+        switch (sceneName)
+        {
+            case "HakmoonBattleScene":
+                _currentSituation.HakmoonBattle = true;
+                break;
+            case "PoscoBattleScene":
+                _currentSituation.PoscoBattle = true;
+                break;
+            case "AsanBattleScene":
+                _currentSituation.AsanBattle = true;
+                break;
+        }
         yield return dialogBox.TypeDialog($"{enemyUnit._Monster._monsterName}을 무찔렀습니다!");
         gameClearUI.SetActive(true);
     }

@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ARScene.unity
-    guid: 038ee228b1032f64a856146065f44104
-  - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: 93128dcf95465437f97c32570a2fdd0c
   - enabled: 1
@@ -23,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 46899b0cdbea6384d86164af85e510b0
+  - enabled: 1
+    path: Assets/Scenes/AsanBattleScene.unity
+    guid: ce334da7d82cb6b409486eb26bac323a
+  - enabled: 1
+    path: Assets/Scenes/HakmoonBattleScene.unity
+    guid: 17edd684d0d1ea34ca9e80ef81ee0c73
+  - enabled: 1
+    path: Assets/Scenes/PoscoBattleScene.unity
+    guid: e952b17809be77b45aed78ae4cf47876
   m_configObjects: {}
