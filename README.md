@@ -6,4 +6,4 @@
 ![image](https://github.com/user-attachments/assets/03adc887-e6a6-4e12-9661-9dbd49b46275)
 
 
-[![동영상 썸네일](https://img.youtube.com/vi/hetYHnNr9fo/0.jpg)](https://www.youtube.com/watch?v=hetYHnNr9fo)
+[![동영상 링크](https://www.youtube.com/watch?v=hetYHnNr9fo)
