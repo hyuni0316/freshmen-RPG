@@ -20,4 +20,4 @@
 <img width="854" alt="스크린샷 2025-04-18 오후 11 49 04" src="https://github.com/user-attachments/assets/ee5b8195-45f5-4b1d-86db-eddce3b43a9d" />
 <img width="853" alt="스크린샷 2025-04-18 오후 11 49 21" src="https://github.com/user-attachments/assets/70cd88bd-8780-43c7-a796-defaa52882b3" />
 <img width="856" alt="스크린샷 2025-04-18 오후 11 49 39" src="https://github.com/user-attachments/assets/c4a3c360-6168-4dfb-a90f-1ae1650593cb" />
-![Uploading 스크린샷 2025-04-18 오후 11.50.01.png…]()
+<img width="853" alt="스크린샷 2025-04-18 오후 11 50 32" src="https://github.com/user-attachments/assets/eae39f9f-a6bf-4411-9439-0b7240c22b1d" />
